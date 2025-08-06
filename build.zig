@@ -24,9 +24,11 @@ pub fn build(b: *std.Build) void {
     zzplot.addIncludePath(nanovg_dep.path("lib/gl2/include"));
 
     const zzplot_tests = b.addTest(.{
-        .root_source_file = b.path("src/zzplot_test.zig"),
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/zzplot_test.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
     });
 
     const run_zzplot_tests = b.addRunArtifact(zzplot_tests);

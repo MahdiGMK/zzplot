@@ -69,9 +69,11 @@ const Targ = struct {
         const exe = b.addExecutable(.{
             .name = self.name,
             // .root_source_file = .{ .cwd_relative = self.src },
-            .root_source_file = b.path(self.src),
-            .target = target,
-            .optimize = optimize,
+            .root_module = b.createModule(.{
+                .root_source_file = b.path(self.src),
+                .target = target,
+                .optimize = optimize,
+            }),
         });
 
         const nanovg_dep = b.dependency("nanovg", .{ .target = target, .optimize = optimize });
