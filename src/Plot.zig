@@ -15,10 +15,7 @@ const cpToUTF8 = util.cpToUTF8;
 pub const Aes = @import("PlotAesthetic.zig");
 pub const TextAes = @import("TextAesthetic.zig");
 
-const c = @cImport({
-    @cInclude("glad/glad.h");
-    @cInclude("GLFW/glfw3.h");
-});
+const c = @import("util.zig").c;
 
 pub const Plot = struct {
     const Self = @This();

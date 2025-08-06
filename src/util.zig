@@ -4,7 +4,7 @@ const print = std.debug.print;
 
 const Figure = @import("Figure.zig").Figure;
 
-const c = @cImport({
+pub const c = @cImport({
     @cInclude("glad/glad.h");
     @cInclude("GLFW/glfw3.h");
 });

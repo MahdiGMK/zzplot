@@ -15,10 +15,7 @@ const isInt = util.isInt;
 const Allocator = std.mem.Allocator;
 const print = std.debug.print;
 
-const c = @cImport({
-    @cInclude("glad/glad.h");
-    @cInclude("GLFW/glfw3.h");
-});
+const c = @import("util.zig").c;
 
 pub const Aes = struct {
     xpos: f32 = 0.0,

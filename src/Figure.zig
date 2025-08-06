@@ -13,10 +13,7 @@ const cpToUTF8 = @import("util.zig").cpToUTF8;
 const Allocator = std.mem.Allocator;
 const print = std.debug.print;
 
-const c = @cImport({
-    @cInclude("glad/glad.h");
-    @cInclude("GLFW/glfw3.h");
-});
+const c = @import("util.zig").c;
 
 pub const Aes = struct {
     wid: f32 = 900,
@@ -157,7 +154,7 @@ pub const Figure = struct {
         self.pxRatio = self.wid_fb / self.aes.wid;
     }
 
-    pub fn getFramebufferSize(window: ?*c.GLFWwindow, wid_fb: c_int, ht_fb: c_int) callconv(.C) void {
+    pub fn getFramebufferSize(window: ?*c.GLFWwindow, wid_fb: c_int, ht_fb: c_int) callconv(.c) void {
         _ = wid_fb;
         _ = ht_fb;
 
@@ -229,7 +226,7 @@ pub const Figure = struct {
         }
     }
 
-    fn keyCallback(window: ?*c.GLFWwindow, key: c_int, scancode: c_int, action: c_int, mods: c_int) callconv(.C) void {
+    fn keyCallback(window: ?*c.GLFWwindow, key: c_int, scancode: c_int, action: c_int, mods: c_int) callconv(.c) void {
         const self: *Self = @ptrCast(@alignCast(c.glfwGetWindowUserPointer(window)));
         myKeyCallback(self, key, scancode, action, mods);
     }
